@@ -1,5 +1,21 @@
 {
-  "name": "hardhat-project",
+  "name": "sale",
+  "description": "Crowdsale Contracts for ecosis Tokens",
+  "version": "0.1.0",
+  "scripts": {
+    "test": "NODE_ENV=test npx hardhat test",
+    "compile": "npx hardhat compile",
+    "deploy:localhost": "npx hardhat run --network localhost scripts/deploy.ts",
+    "deploy:hardhat": "npx hardhat run --network hardhat scripts/deploy.ts",
+    "deploy:fuji": "npx hardhat run --network fuji scripts/deploy.ts",
+    "deploy:mainnet": "npx hardhat run --network mainnet scripts/deploy.ts",
+    "clean": "npx hardhat clean",
+    "lint:sol": "solhint -f table contracts/**/*.sol",
+    "format:sol": "./node_modules/.bin/prettier --write **/*.sol"
+  },
+  "directories": {
+    "test": "test"
+  },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.5",
     "@nomiclabs/hardhat-etherscan": "^3.0.3",
@@ -33,6 +49,6 @@
     "typescript": "^4.6.2"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^4.5.0"
+    "@openzeppelin/contracts": "v2.5"
   }
 }
