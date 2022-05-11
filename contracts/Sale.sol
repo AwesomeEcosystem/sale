@@ -1,8 +1,8 @@
 pragma solidity ^0.8.0;
 
-import "./Crowdsale.sol";
+import "./RefundableCrowdsale.sol";
 
-contract Sale is Crowdsale {
+contract Sale is RefundableCrowdsale {
 
     constructor(
         uint256 rate,    // rate in TKNbits
