@@ -1,10 +1,10 @@
-pragma solidity ^0.8.0;
+pragma solidity ^0.6.0;
 
 import "./Context.sol";
+import "./RefundableCrowdsale.sol";
 import "./interfaces/IERC20.sol";
 import "./libraries/SafeMath.sol";
 import "./libraries/SafeERC20.sol";
-import "./ReentrancyGuard.sol";
 
 /**
  * @title Crowdsale
@@ -18,7 +18,7 @@ import "./ReentrancyGuard.sol";
  * the methods to add functionality. Consider using 'super' where appropriate to concatenate
  * behavior.
  */
-contract Crowdsale is Context, ReentrancyGuard {
+contract Crowdsale is Context, RefundableCrowdsale {
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
 
@@ -108,7 +108,7 @@ contract Crowdsale is Context, ReentrancyGuard {
      * another `nonReentrant` function.
      * @param beneficiary Recipient of the token purchase
      */
-    function buyTokens(address beneficiary) public nonReentrant payable {
+    function buyTokens(address beneficiary) public payable {
         uint256 weiAmount = msg.value;
         _preValidatePurchase(beneficiary, weiAmount);
 
@@ -136,7 +136,7 @@ contract Crowdsale is Context, ReentrancyGuard {
      * @param beneficiary Address performing the token purchase
      * @param weiAmount Value in wei involved in the purchase
      */
-    function _preValidatePurchase(address beneficiary, uint256 weiAmount) internal view virtual{
+    function _preValidatePurchase(address beneficiary, uint256 weiAmount) internal view virtual {
         require(beneficiary != address(0), "Crowdsale: beneficiary is the zero address");
         require(weiAmount != 0, "Crowdsale: weiAmount is 0");
         this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
