@@ -1,25 +1,10 @@
-// SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.2;
+pragma solidity ^0.5.0;
 
 /**
- * @dev Interface of the ERC20 standard as defined in the EIP.
+ * @dev Interface of the ERC20 standard as defined in the EIP. Does not include
+ * the optional functions; to access them see {ERC20Detailed}.
  */
 interface IERC20 {
-    /**
-     * @dev Emitted when `value` tokens are moved from one account (`from`) to
-     * another (`to`).
-     *
-     * Note that `value` may be zero.
-     */
-    event Transfer(address indexed from, address indexed to, uint256 value);
-
-    /**
-     * @dev Emitted when the allowance of a `spender` for an `owner` is set by
-     * a call to {approve}. `value` is the new allowance.
-     */
-    event Approval(address indexed owner, address indexed spender, uint256 value);
-
     /**
      * @dev Returns the amount of tokens in existence.
      */
@@ -31,13 +16,13 @@ interface IERC20 {
     function balanceOf(address account) external view returns (uint256);
 
     /**
-     * @dev Moves `amount` tokens from the caller's account to `to`.
+     * @dev Moves `amount` tokens from the caller's account to `recipient`.
      *
      * Returns a boolean value indicating whether the operation succeeded.
      *
      * Emits a {Transfer} event.
      */
-    function transfer(address to, uint256 amount) external returns (bool);
+    function transfer(address recipient, uint256 amount) external returns (bool);
 
     /**
      * @dev Returns the remaining number of tokens that `spender` will be
@@ -65,7 +50,7 @@ interface IERC20 {
     function approve(address spender, uint256 amount) external returns (bool);
 
     /**
-     * @dev Moves `amount` tokens from `from` to `to` using the
+     * @dev Moves `amount` tokens from `sender` to `recipient` using the
      * allowance mechanism. `amount` is then deducted from the caller's
      * allowance.
      *
@@ -73,9 +58,19 @@ interface IERC20 {
      *
      * Emits a {Transfer} event.
      */
-    function transferFrom(
-        address from,
-        address to,
-        uint256 amount
-    ) external returns (bool);
+    function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
+
+    /**
+     * @dev Emitted when `value` tokens are moved from one account (`from`) to
+     * another (`to`).
+     *
+     * Note that `value` may be zero.
+     */
+    event Transfer(address indexed from, address indexed to, uint256 value);
+
+    /**
+     * @dev Emitted when the allowance of a `spender` for an `owner` is set by
+     * a call to {approve}. `value` is the new allowance.
+     */
+    event Approval(address indexed owner, address indexed spender, uint256 value);
 }

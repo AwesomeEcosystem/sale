@@ -9,14 +9,6 @@ import "solidity-coverage";
 
 dotenv.config();
 
-const FORK_FUJI = true
-const FORK_MAINNET = false
-const forkingData = FORK_FUJI ? {
-  url: 'https://api.avax-test.network/ext/bc/C/rpc',
-} : FORK_MAINNET ? {
-  url: 'https://api.avax.network/ext/bc/C/rpc'
-} : undefined
-
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
@@ -34,7 +26,25 @@ const config: HardhatUserConfig = {
   solidity: {
     compilers : [
       {
-        version : "0.8.2",
+        version : "0.6.0",
+        settings : {
+          optimizer: {
+            enabled: true,
+            runs: 200
+          }
+        },
+      },
+      {
+        version : "0.5.0",
+        settings : {
+          optimizer: {
+            enabled: true,
+            runs: 200
+          }
+        },
+      },
+      {
+        version : "0.5.5",
         settings : {
           optimizer: {
             enabled: true,
@@ -45,15 +55,6 @@ const config: HardhatUserConfig = {
     ],
   },
   networks: {
-    hardhat: {
-      gasPrice: 225000000000,
-      chainId: !forkingData ? 43112 : undefined, //Only specify a chainId if we are not forking
-      forking: forkingData
-    },
-    localhost: {
-      url: 'http://127.0.0.1:8545/ext/bc/C/rpc',
-      accounts: [],
-    },
     fuji: {
       url: 'https://api.avax-test.network/ext/bc/C/rpc',
       // gasPrice: 'auto',

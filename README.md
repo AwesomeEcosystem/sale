@@ -2,4 +2,4 @@
 Token Sale Vault Contract
 
 # Testnet
-0x0B12d18be7027DEcbB576671c7C39B09fE535E2D
+0x574cA332eC1ff465e452A4d43CEbC9fedba13F77

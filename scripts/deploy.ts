@@ -9,8 +9,8 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 const RATE = process.env.RATE || 1000000;
-const WALLET = process.env.WALLET || "0x8c8eC00fb235dE3922182b47d2E8f8e69268039a";
-const TOKEN = process.env.TOKEN || "0xA287aA5eA1534e2F981f22CCA35b5757b995f305";
+const WALLET = process.env.WALLET || "0x98484b0BdBb0a12caC0cB266eD13cbC546D9928f";
+const TOKEN = process.env.TOKEN || "0x19a1165A79AFAAeFd805969B32a0640d4Db9f131";
 
 async function main() {
   // Hardhat always runs the compile task when running scripts with its command
