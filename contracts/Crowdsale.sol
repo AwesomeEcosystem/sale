@@ -4,7 +4,6 @@ import "./Context.sol";
 import "./interfaces/IERC20.sol";
 import "./libraries/SafeMath.sol";
 import "./libraries/SafeERC20.sol";
-import "./ReentrancyGuard.sol";
 
 /**
  * @title Crowdsale
@@ -18,7 +17,7 @@ import "./ReentrancyGuard.sol";
  * the methods to add functionality. Consider using 'super' where appropriate to concatenate
  * behavior.
  */
-contract Crowdsale is Context, ReentrancyGuard {
+contract Crowdsale is Context {
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
 
@@ -54,7 +53,7 @@ contract Crowdsale is Context, ReentrancyGuard {
      * @param wallet Address where collected funds will be forwarded to
      * @param token Address of the token being sold
      */
-    constructor (uint256 rate, address payable wallet, IERC20 token) public {
+    constructor (uint256 rate, address payable, address wallet, IERC20 token) public {
         require(rate > 0, "Crowdsale: rate is 0");
         require(wallet != address(0), "Crowdsale: wallet is the zero address");
         require(address(token) != address(0), "Crowdsale: token is the zero address");
