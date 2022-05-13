@@ -22,7 +22,7 @@ async function main() {
 
   // We get the contract to deploy
   const Sale = await ethers.getContractFactory("Sale");
-  const sale = await Sale.deploy(RATE, WALLET, TOKEN);
+  const sale = await Sale.deploy(TOKEN);
 
   await sale.deployed();
 
